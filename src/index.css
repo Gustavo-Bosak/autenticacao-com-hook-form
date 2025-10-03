@@ -1,0 +1,76 @@
+/* ---- Layout da Home ---- */
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  min-height: calc(100vh - 120px); /* desconta header + footer */
+  background-color: #f8f9fa;
+}
+
+/* Coluna esquerda */
+.home-left {
+  display: flex;
+  justify-content: center;
+}
+.home-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Coluna direita */
+.home-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+}
+.home-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+.home-features {
+  list-style: none;
+  padding: 0;
+}
+.home-features li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Ações */
+.home-actions {
+  display: flex;
+  gap: 1rem;
+}
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+.btn-primary:hover {
+  background: #0056b3;
+}
+.btn-secondary {
+  background: #e9ecef;
+  color: #333;
+}
+.btn-secondary:hover {
+  background: #d6d8db;
+}
