@@ -8,4 +8,5 @@ export type tipoFuncionario = {
     cpf:string;
     telefone:string;
     salario:number;
+    dataAdmissao:string;
 }
