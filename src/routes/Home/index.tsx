@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <div>
+    <main>
       <h1>Tabela de Funcionarios</h1>
       <li>
         <ul>
@@ -16,7 +16,7 @@ function Home() {
         </ul>
       </li>
       
-    </div>
+    </main>
   )
   
 }
