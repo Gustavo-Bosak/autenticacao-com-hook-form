@@ -10,30 +10,19 @@
 //   senha: "********"
 // }
 
-type Funcionario = {
-  nome: string;
-  rf: string;
-  cargo: string;
-  setor: string;
-  cpf: string;
-  telefone: string;
-  email: string;
-  salario: string;
-  dataAdmissao: string;
-  senha: string;
-};
+import type { tipoFuncionario } from "../../types/tipoFuncionario";
 
-const funcionario: Funcionario = {
-  nome: "Felipe Ferrete",
-  rf: "000001",
-  cargo: "Desenvolvedor Backend",
-  setor: "TI",
-  cpf: "001.002.003-04",
-  telefone: "(11)99999-9999",
-  email: "rf000001@fiap.com.br",
-  salario: "R$ 5.500,00",
-  dataAdmissao: "01/03/2024",
-  senha: "xxxxxx"
+const funcionario: tipoFuncionario = {
+    rf:"string",
+    nome:"string",
+    email:"string",
+    senha:"string",
+    cargo:"string",
+    setor:"string",
+    cpf:"string",
+    telefone:"string",
+    salario:4.400,
+    dataAdmissao:"string"
 };
 
 function Home() {
@@ -57,19 +46,19 @@ function Home() {
           {/* Dados Pessoais */}
           <div className="info-card">
             <h3 className="info-pessoais">📌 Dados Pessoais</h3>
-            <p><strong>Telefone:</strong> {funcionario.telefone}</p>
-            <p><strong>Endereço:</strong> {funcionario.cpf}</p>
+            <p>Telefone: {funcionario.telefone}</p>
+            <p>Endereço: {funcionario.cpf}</p>
           </div>
 
           {/* Dados Profissionais */}
           <div className="info-card">
             <h3 className="info-profissionais">💼 Dados Profissionais</h3>
-            <p><strong>Cargo:</strong> {funcionario.cargo}</p>
-            <p><strong>Setor:</strong> {funcionario.setor}</p>
-            <p><strong>Email Corporativo:</strong> {funcionario.email}</p>
-            <p><strong>Salario:</strong> {funcionario.salario}</p>
-            <p><strong>Admissão:</strong> {funcionario.dataAdmissao}</p>
-            <p><strong>Senha:</strong> {funcionario.senha}</p>
+            <p>Cargo: {funcionario.cargo}</p>
+            <p>Setor: {funcionario.setor}</p>
+            <p>Email Corporativo: {funcionario.email}</p>
+            <p>Salario: {funcionario.salario}</p>
+            <p>Admissão: {funcionario.dataAdmissao}</p>
+            <p>Senha: {funcionario.senha}</p>
           </div>
         </div>
       </div>
