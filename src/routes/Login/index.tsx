@@ -1,8 +1,8 @@
 function Login() {
   return (
-    <div>
+    <main>
       
-    </div>
+    </main>
   )
 }
 
