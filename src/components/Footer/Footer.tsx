@@ -1,8 +1,8 @@
 function Footer() {
   return (
-    <div>
-      
-    </div>
+    <footer>
+      <p>&copy; 2025 Cadastro de Funcionarios FIAP </p>
+    </footer>
   )
 }
 
