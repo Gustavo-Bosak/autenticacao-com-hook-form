@@ -1,10 +1,11 @@
 export type tipoFuncionario = {
-    nome:string;
     rf:string;
+    nome:string;
+    email:string;
+    senha:string;
     cargo:string;
     setor:string;
     cpf:string;
     telefone:string;
-    email:string;
     salario:number;
 }
