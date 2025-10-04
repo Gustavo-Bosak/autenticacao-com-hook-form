@@ -2,10 +2,11 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import type { tipoFuncionario } from '../../types/tipoFuncionario'
 import { useAuth } from '../../context/AuthContext'
 import { useEffect, useState } from 'react'
+import type { tipoSetor } from '../../types/tipoSetor'
 
 function Cadastro () {
   const { login } = useAuth()
-  const [setores, setSetores] = useState<string[]>([])
+  const [setores, setSetores] = useState<tipoSetor[]>([])
 
   const {
     register,
@@ -17,20 +18,22 @@ function Cadastro () {
   useEffect(() => {
     const fetchSetores = async () => {
       try {
-        const responseSetor = await fetch('/')
+        const responseSetor = await fetch('http://localhost:3001/setores')
         const dataSetor = await responseSetor.json()
         setSetores(dataSetor)
       } catch {
         console.error('Erro ao buscar dados de setores')
       }
     }
-    
+
     fetchSetores()
   }, [])
 
   const onSubmit: SubmitHandler<tipoFuncionario> = async data => {
     try {
-      const responseFuncionario = await fetch('/')
+      const responseFuncionario = await fetch(
+        'http://localhost:3001/funcionarios'
+      )
       const dataFuncionario = await responseFuncionario.json()
 
       const rfExistente = dataFuncionario.some(
@@ -51,7 +54,7 @@ function Cadastro () {
         setError('cpf', { type: 'manual', message: 'CPF já cadastrado.' })
 
       if (!rfExistente && !emailExistente && !cpfExistente) {
-        await fetch('/', {
+        await fetch('http://localhost:3001/funcionarios', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -101,14 +104,13 @@ function Cadastro () {
             <div>
               <label htmlFor='idSetor'>Setor</label>
 
-              <select id='idSetor' required {...register('setor')}>
+              <select id='idSetor' {...register('setor', { required: true })}>
                 <option value='' disabled>
                   Selecione um setor
                 </option>
-
-                {setores.map(setor => (
-                  <option key={setor} value={setor}>
-                    {setor}
+                {setores.map((setor, index) => (
+                  <option key={index} value={setor.nome}>
+                    {setor.nome}
                   </option>
                 ))}
               </select>
