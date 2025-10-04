@@ -116,9 +116,9 @@ function Cadastro () {
                 <span className='text-red-500 font-bold'>*</span>
               </label>
               <input
-                type='text'
+                type='date'
                 id='idDataAdmissao'
-                {...(register('dataAdmissao'), { required: true })}
+                {...(register('dataAdmissao'), { required: true} )}
               />
             </div>
           </div>
