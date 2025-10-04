@@ -1,6 +1,15 @@
 {
-    "funcionarios":[{
-    }
+    "funcionarios": [
+        {
+
+        }
+    ],
+    "setores": [
+        "Central de Atendimento ao Aluno (CAA)",
+        "Financeiro",
+        "Recursos Humanos (RH)",
+        "Tecnologia da Informação Interna (TI)",
+        "Marketing e Comunicação"
     ]
 
 }

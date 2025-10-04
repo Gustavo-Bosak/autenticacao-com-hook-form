@@ -1,23 +1,67 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import type { tipoFuncionario } from '../../types/tipoFuncionario'
-
-const setoresDisponiveis = [
-  "Central de Atendimento ao Aluno (CAA)",
-  "Financeiro",
-  "Recursos Humanos (RH)",
-  "Tecnologia da Informação Interna (TI)",
-  "Marketing e Comunicação"
-]
+import { useAuth } from '../../context/AuthContext'
+import { useEffect, useState } from 'react'
 
 function Cadastro () {
+  const { login } = useAuth()
+  const [setores, setSetores] = useState<string[]>([])
+
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    setError
+    // formState: { errors }
   } = useForm<tipoFuncionario>()
-  const onSubmit: SubmitHandler<tipoFuncionario> = data => {
-    console.log(data)
-    console.log(errors)
+
+  useEffect(() => {
+    const fetchSetores = async () => {
+      try {
+        const responseSetor = await fetch('/')
+        const dataSetor = await responseSetor.json()
+        setSetores(dataSetor)
+      } catch {
+        console.error('Erro ao buscar dados de setores')
+      }
+    }
+    
+    fetchSetores()
+  }, [])
+
+  const onSubmit: SubmitHandler<tipoFuncionario> = async data => {
+    try {
+      const responseFuncionario = await fetch('/')
+      const dataFuncionario = await responseFuncionario.json()
+
+      const rfExistente = dataFuncionario.some(
+        (f: tipoFuncionario) => f.rf === data.rf
+      )
+      const emailExistente = dataFuncionario.some(
+        (f: tipoFuncionario) => f.email === data.email
+      )
+      const cpfExistente = dataFuncionario.some(
+        (f: tipoFuncionario) => f.cpf === data.cpf
+      )
+
+      if (rfExistente)
+        setError('rf', { type: 'manual', message: 'RF já cadastrado.' })
+      if (emailExistente)
+        setError('email', { type: 'manual', message: 'Email já cadastrado.' })
+      if (cpfExistente)
+        setError('cpf', { type: 'manual', message: 'CPF já cadastrado.' })
+
+      if (!rfExistente && !emailExistente && !cpfExistente) {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+
+        login(data)
+      }
+    } catch {
+      console.error('Erro ao buscar dados de funcionários')
+    }
   }
 
   return (
@@ -30,16 +74,18 @@ function Cadastro () {
               <input
                 type='text'
                 id='idNome'
-                {...(register('nome'), { required: true })}
+                {...register('nome', { required: true })}
               />
+              {/* <p>{errors.nome?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
             <div>
               <label htmlFor='idRf'>RF (Registro do Funcionário)</label>
               <input
                 type='text'
                 id='idRf'
-                {...(register('rf'), { required: true })}
+                {...register('rf', { required: true })}
               />
+              {/* <p>{errors.rf?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
           </div>
           <div>
@@ -48,20 +94,19 @@ function Cadastro () {
               <input
                 type='text'
                 id='idCargo'
-                {...(register('cargo'), { required: true })}
+                {...register('cargo', { required: true })}
               />
+              {/* <p>{errors.cargo?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
-              <div>
+            <div>
               <label htmlFor='idSetor'>Setor</label>
 
-              <select
-                id='idSetor'
-                required
-                {...register('setor')}
-              >
-                <option value="" disabled selected>Selecione um setor</option>
-                
-                {setoresDisponiveis.map(setor => (
+              <select id='idSetor' required {...register('setor')}>
+                <option value='' disabled>
+                  Selecione um setor
+                </option>
+
+                {setores.map(setor => (
                   <option key={setor} value={setor}>
                     {setor}
                   </option>
@@ -75,16 +120,18 @@ function Cadastro () {
               <input
                 type='text'
                 id='idCpf'
-                {...(register('cpf'), { required: true })}
+                {...register('cpf', { required: true })}
               />
+              {/* <p>{errors.cpf?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
             <div>
               <label htmlFor='idTelefone'>Telefone</label>
               <input
                 type='tel'
                 id='idTelefone'
-                {...(register('telefone'), { required: true })}
+                {...register('telefone', { required: true })}
               />
+              {/* <p>{errors.telefone?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
           </div>
           <div>
@@ -93,8 +140,9 @@ function Cadastro () {
               <input
                 type='email'
                 id='idEmail'
-                {...(register('email'), { required: true })}
+                {...register('email', { required: true })}
               />
+              {/* <p>{errors.email?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
             <div>
               <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
@@ -107,8 +155,9 @@ function Cadastro () {
               <input
                 type='password'
                 id='idSenha'
-                {...(register('senha'), { required: true })}
+                {...register('senha', { required: true })}
               />
+              {/* <p>{errors.senha?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
             <div>
               <label htmlFor='idSenhaConfirmada'>
@@ -124,8 +173,9 @@ function Cadastro () {
               <input
                 type='number'
                 id='idSalario'
-                {...(register('salario'), { required: true })}
+                {...register('salario', { required: true })}
               />
+              {/* <p>{errors.salario?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
             <div>
               <label htmlFor='idDataAdmissao'>
@@ -135,8 +185,9 @@ function Cadastro () {
               <input
                 type='date'
                 id='idDataAdmissao'
-                {...(register('dataAdmissao'), { required: true} )}
+                {...register('dataAdmissao', { required: true })}
               />
+              {/* <p>{errors.dataAdmissao?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
             </div>
           </div>
         </fieldset>
