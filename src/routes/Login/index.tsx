@@ -54,7 +54,7 @@ function Login() {
         <p className="mt-6 text-center text-sm text-white-600">
           Não tem um perfil?{' '}
           <a
-            href="/cadastrar" 
+            href="/cadastro" 
             className="font-semibold text-fiap-cor"
           >
             Cadastrar

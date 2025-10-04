@@ -15,7 +15,7 @@ function Cadastro () {
     setError,
     watch,
     formState: { errors }
-  } = useForm<tipoFuncionario>()
+  } = useForm<tipoFuncionario>({ shouldUnregister: true })
 
   const watchEmail = watch('email')
   const watchSenha = watch('senha')
@@ -86,8 +86,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message:
-                      'Informe apenas letras e no mínimo 3 caracteres'
+                    message: 'Informe apenas letras e no mínimo 3 caracteres'
                   }
                 })}
               />
@@ -119,8 +118,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message:
-                      'Informe apenas letras e no mínimo 3 caracteres'
+                    message: 'Informe apenas letras e no mínimo 3 caracteres'
                   }
                 })}
               />
@@ -190,9 +188,6 @@ function Cadastro () {
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: 'Formato de email inválido'
-                  },
-                  validate: valor => {
-                    return valor === watchEmail || 'Emails não correspondem'
                   }
                 })}
               />
@@ -200,7 +195,17 @@ function Cadastro () {
             </div>
             <div>
               <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
-              <input type='email' id='idConfirmarEmail' required />
+              <input
+                type='email'
+                id='idConfirmarEmail'
+                {...register('confirmarEmail', {
+                  required: 'Campo obrigatório',
+                  validate: valor => {
+                    return valor === watchEmail || 'Emails não correspondem'
+                  }
+                })}
+              />
+              <MensagemErro error={errors.confirmarEmail} />
             </div>
           </div>
           <div>
@@ -214,9 +219,6 @@ function Cadastro () {
                   minLength: {
                     value: 6,
                     message: 'Informe no mínimo 6 caracteres'
-                  },
-                  validate: valor => {
-                    return valor === watchSenha || 'Senhas não correspondem'
                   }
                 })}
               />
@@ -227,7 +229,17 @@ function Cadastro () {
                 Confirmar Senha{' '}
                 <span className='text-red-500 font-bold'>*</span>
               </label>
-              <input type='password' id='idSenhaConfirmada' required />
+              <input
+                type='password'
+                id='idSenhaConfirmada'
+                {...register('confirmarSenha', {
+                  required: 'Campo obrigatório',
+                  validate: valor => {
+                    return valor === watchSenha || 'Senhas não correspondem'
+                  }
+                })}
+              />
+              <MensagemErro error={errors.confirmarSenha} />
             </div>
           </div>
           <div>
@@ -268,7 +280,8 @@ function Cadastro () {
                     const dataMinima = new Date()
                     dataMinima.setFullYear(dataMaxima.getFullYear() - 30)
 
-                    if (data > dataMaxima) return 'Informe datas até o dia de hoje'
+                    if (data > dataMaxima)
+                      return 'Informe datas até o dia de hoje'
                     if (data < dataMinima)
                       return 'Informe datas a até 30 anos atrás'
                     return true

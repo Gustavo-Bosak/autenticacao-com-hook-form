@@ -1,23 +1,56 @@
 {
-    "funcionarios": [
-        {
-            "rf": "string",
-            "nome": "string",
-            "email": "string",
-            "senha": "string",
-            "cargo": "string",
-            "setor": "string",
-            "cpf": "string",
-            "telefone": "string",
-            "salario": "number",
-            "dataAdmissao": "string"
-        }
-    ],
-    "setores": [
-        { "id": "1","nome":"Central de Atendimento ao Aluno (CAA)" },
-        { "id": "2","nome":"Financeiro" },
-        { "id": "3","nome":"Recursos Humanos (RH)" },
-        { "id": "4","nome":"Tecnologia da Informação Interna (TI)" },
-        { "id": "5","nome":"Marketing e Comunicação" }
-    ]
+  "funcionarios": [
+    {
+      "id": "fb69",
+      "nome": "aaaa",
+      "rf": "aaaa",
+      "cargo": "aaaa",
+      "setor": "Financeiro",
+      "cpf": "12345678900",
+      "telefone": "11922456789",
+      "email": "a@b.com",
+      "confirmarEmail": "a@b.com",
+      "senha": "123456",
+      "confirmarSenha": "123456",
+      "salario": "1515",
+      "dataAdmissao": "2025-06-02"
+    },
+    {
+      "id": "91fa",
+      "nome": "name",
+      "rf": "12345",
+      "cargo": "aaaa",
+      "setor": "Financeiro",
+      "cpf": "11111111111",
+      "telefone": "11923456789",
+      "email": "b@c.com",
+      "confirmarEmail": "b@c.com",
+      "senha": "123456",
+      "confirmarSenha": "123456",
+      "salario": "1515",
+      "dataAdmissao": "2024-09-25"
+    }
+  ],
+  "setores": [
+    {
+      "id": "1",
+      "nome": "Central de Atendimento ao Aluno (CAA)"
+    },
+    {
+      "id": "2",
+      "nome": "Financeiro"
+    },
+    {
+      "id": "3",
+      "nome": "Recursos Humanos (RH)"
+    },
+    {
+      "id": "4",
+      "nome": "Tecnologia da Informação Interna (TI)"
+    },
+    {
+      "id": "5",
+      "nome": "Marketing e Comunicação"
+    }
+  ]
 }
