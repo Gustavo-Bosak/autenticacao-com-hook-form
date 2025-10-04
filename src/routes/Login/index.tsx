@@ -19,7 +19,7 @@ function Login() {
           <div className="space-y-4">
             <div>
               <label htmlFor="idEmailCorporativo" className="block text-sm font-medium text-white-700 mb-1">
-                Email
+                Email <span className='text-red-500 font-bold'>*</span>
               </label>
               <input
                 type="email"
@@ -32,7 +32,7 @@ function Login() {
             </div>
             <div>
               <label htmlFor="idSenha" className="block text-sm font-medium text-white-700 mb-1">
-                Senha
+                Senha <span className='text-red-500 font-bold'>*</span>
               </label>
               <input
                 type="password"
