@@ -3,6 +3,7 @@ import type { tipoFuncionario } from '../../types/tipoFuncionario'
 import { useAuth } from '../../context/AuthContext'
 import { useEffect, useState } from 'react'
 import type { tipoSetor } from '../../types/tipoSetor'
+import MensagemErro from '../../components/MensagemErro/MensagemErro'
 
 function Cadastro () {
   const { login } = useAuth()
@@ -11,9 +12,13 @@ function Cadastro () {
   const {
     register,
     handleSubmit,
-    setError
-    // formState: { errors }
+    setError,
+    watch,
+    formState: { errors }
   } = useForm<tipoFuncionario>()
+
+  const watchEmail = watch('email')
+  const watchSenha = watch('senha')
 
   useEffect(() => {
     const fetchSetores = async () => {
@@ -77,18 +82,31 @@ function Cadastro () {
               <input
                 type='text'
                 id='idNome'
-                {...register('nome', { required: true })}
+                {...register('nome', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
+                    message:
+                      'Informe apenas letras e no mínimo 3 caracteres'
+                  }
+                })}
               />
-              {/* <p>{errors.nome?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.nome} />
             </div>
             <div>
               <label htmlFor='idRf'>RF (Registro do Funcionário)</label>
               <input
                 type='text'
                 id='idRf'
-                {...register('rf', { required: true })}
+                {...register('rf', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/,
+                    message: 'RF não reconhecido'
+                  }
+                })}
               />
-              {/* <p>{errors.rf?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.rf} />
             </div>
           </div>
           <div>
@@ -97,14 +115,24 @@ function Cadastro () {
               <input
                 type='text'
                 id='idCargo'
-                {...register('cargo', { required: true })}
+                {...register('cargo', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
+                    message:
+                      'Informe apenas letras e no mínimo 3 caracteres'
+                  }
+                })}
               />
-              {/* <p>{errors.cargo?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.cargo} />
             </div>
             <div>
               <label htmlFor='idSetor'>Setor</label>
-
-              <select id='idSetor' {...register('setor', { required: true })}>
+              <select
+                id='idSetor'
+                defaultValue=''
+                {...register('setor', { required: 'Campo obrigatório' })}
+              >
                 <option value='' disabled>
                   Selecione um setor
                 </option>
@@ -114,6 +142,7 @@ function Cadastro () {
                   </option>
                 ))}
               </select>
+              <MensagemErro error={errors.setor} />
             </div>
           </div>
           <div>
@@ -122,18 +151,32 @@ function Cadastro () {
               <input
                 type='text'
                 id='idCpf'
-                {...register('cpf', { required: true })}
+                inputMode='numeric'
+                {...register('cpf', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^\d{11}$/,
+                    message: 'Informe apenas números e no mínimo 11 caracteres'
+                  }
+                })}
               />
-              {/* <p>{errors.cpf?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.cpf} />
             </div>
             <div>
               <label htmlFor='idTelefone'>Telefone</label>
               <input
                 type='tel'
                 id='idTelefone'
-                {...register('telefone', { required: true })}
+                inputMode='numeric'
+                {...register('telefone', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^\d{10,11}$/,
+                    message: 'Informe apenas números e no mínimo 11 caracteres'
+                  }
+                })}
               />
-              {/* <p>{errors.telefone?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.telefone} />
             </div>
           </div>
           <div>
@@ -142,9 +185,18 @@ function Cadastro () {
               <input
                 type='email'
                 id='idEmail'
-                {...register('email', { required: true })}
+                {...register('email', {
+                  required: 'Campo obrigatório',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: 'Formato de email inválido'
+                  },
+                  validate: valor => {
+                    return valor === watchEmail || 'Emails não correspondem'
+                  }
+                })}
               />
-              {/* <p>{errors.email?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.email} />
             </div>
             <div>
               <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
@@ -157,9 +209,18 @@ function Cadastro () {
               <input
                 type='password'
                 id='idSenha'
-                {...register('senha', { required: true })}
+                {...register('senha', {
+                  required: 'Campo obrigatório',
+                  minLength: {
+                    value: 6,
+                    message: 'Informe no mínimo 6 caracteres'
+                  },
+                  validate: valor => {
+                    return valor === watchSenha || 'Senhas não correspondem'
+                  }
+                })}
               />
-              {/* <p>{errors.senha?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.senha} />
             </div>
             <div>
               <label htmlFor='idSenhaConfirmada'>
@@ -173,11 +234,23 @@ function Cadastro () {
             <div>
               <label htmlFor='idSalario'>Salário</label>
               <input
-                type='number'
+                type='text'
                 id='idSalario'
-                {...register('salario', { required: true })}
+                inputMode='numeric'
+                {...register('salario', {
+                  required: 'Campo obrigatório',
+                  validate: valor => {
+                    const numero = parseFloat(String(valor).replace(',', '.'))
+                    return numero >= 900 || 'Informe no mínimo R$ 900,00'
+                  },
+                  pattern: {
+                    value: /^\d+([.,]\d{1,2})?$/,
+                    message:
+                      'Informe apenas números, com até duas casas decimais'
+                  }
+                })}
               />
-              {/* <p>{errors.salario?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.salario} />
             </div>
             <div>
               <label htmlFor='idDataAdmissao'>
@@ -187,9 +260,22 @@ function Cadastro () {
               <input
                 type='date'
                 id='idDataAdmissao'
-                {...register('dataAdmissao', { required: true })}
+                {...register('dataAdmissao', {
+                  required: 'Campo obrigatório',
+                  validate: valor => {
+                    const dataMaxima = new Date()
+                    const data = new Date(valor)
+                    const dataMinima = new Date()
+                    dataMinima.setFullYear(dataMaxima.getFullYear() - 30)
+
+                    if (data > dataMaxima) return 'Informe datas até o dia de hoje'
+                    if (data < dataMinima)
+                      return 'Informe datas a até 30 anos atrás'
+                    return true
+                  }
+                })}
               />
-              {/* <p>{errors.dataAdmissao?.type === 'erro1' && 'Mensagem do primeiro erro'}</p> */}
+              <MensagemErro error={errors.dataAdmissao} />
             </div>
           </div>
         </fieldset>
