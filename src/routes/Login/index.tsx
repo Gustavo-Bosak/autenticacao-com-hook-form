@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function Login () {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,9 +34,9 @@ function Login () {
       </form>
       <p className='mb-[2vh]'>
         Não tem um perfil?{' '}
-        {/*<Link to='/cadastrar' className='font-bold'>
+        <Link to='/cadastro' className='font-bold'>
           Cadastrar
-        </Link>*/}
+        </Link>
       </p>
     </main>
   )
