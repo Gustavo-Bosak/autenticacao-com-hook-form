@@ -2,9 +2,14 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import type { tipoFuncionario } from '../../types/tipoFuncionario'
 
 function Cadastro () {
-  const { register, handleSubmit } = useForm<tipoFuncionario>()
-  const onSubmit:SubmitHandler<tipoFuncionario> = ( data ) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<tipoFuncionario>()
+  const onSubmit: SubmitHandler<tipoFuncionario> = data => {
     console.log(data)
+    console.log(errors)
   }
 
   return (
@@ -12,116 +17,110 @@ function Cadastro () {
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idNome'>Nome Completo</label>
               <input
                 type='text'
                 id='idNome'
-                required
-                {...register('nome')}
+                {...(register('nome'), { required: true })}
               />
             </div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idRf'>RF (Registro do Funcionário)</label>
               <input
                 type='text'
                 id='idRf'
-                required
-                {...register('rf')}
+                {...(register('rf'), { required: true })}
               />
             </div>
           </div>
           <div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idCargo'>Cargo</label>
               <input
                 type='text'
                 id='idCargo'
-                required
-                {...register('cargo')}
+                {...(register('cargo'), { required: true })}
               />
             </div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idSetor'>Setor</label>
               <input
                 type='text'
                 id='idSetor'
-                required
-                {...register('setor')}
+                {...(register('setor'), { required: true })}
               />
             </div>
           </div>
           <div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idCpf'>CPF</label>
               <input
                 type='text'
                 id='idCpf'
-                required
-                {...register('cpf')}
+                {...(register('cpf'), { required: true })}
               />
             </div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idTelefone'>Telefone</label>
               <input
                 type='tel'
                 id='idTelefone'
-                required
-                {...register('telefone')}
+                {...(register('telefone'), { required: true })}
               />
             </div>
           </div>
           <div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idEmail'>Email Corporativo</label>
               <input
                 type='email'
                 id='idEmail'
-                required
-                {...register('email')}
+                {...(register('email'), { required: true })}
               />
             </div>
-            <div className='input-container'>
-              <label htmlFor='idSalario'>Salário</label>
-              <input
-                type='number'
-                id='idSalario'
-                required
-                {...register('salario')}
-              />
+            <div>
+              <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
+              <input type='email' id='idConfirmarEmail' required />
             </div>
           </div>
           <div>
-            <div className='input-container w-full'>
+            <div>
               <label htmlFor='idSenha'>Senha</label>
               <input
                 type='password'
                 id='idSenha'
-                required
-                {...register('senha')}
+                {...(register('senha'), { required: true })}
               />
             </div>
-            <div className='input-container'>
+            <div>
               <label htmlFor='idSenhaConfirmada'>
-                Confirmar Senha <span className='text-red-500 font-bold'>*</span>
+                Confirmar Senha{' '}
+                <span className='text-red-500 font-bold'>*</span>
               </label>
-              <input
-                type='password'
-                id='idSenhaConfirmada'
-                required
-              />
+              <input type='password' id='idSenhaConfirmada' required />
             </div>
           </div>
-          <div className='input-container'>
-            <label htmlFor='idDataAdmissao'>
-              Data de Admissão <span className='text-red-500 font-bold'>*</span>
-            </label>
-            <input
-              type='text'
-              id='idDataAdmissao'
-              required
-              {...register('dataAdmissao')}
-            />
+          <div>
+            <div>
+              <label htmlFor='idSalario'>Salário</label>
+              <input
+                type='number'
+                id='idSalario'
+                {...(register('salario'), { required: true })}
+              />
+            </div>
+            <div>
+              <label htmlFor='idDataAdmissao'>
+                Data de Admissão{' '}
+                <span className='text-red-500 font-bold'>*</span>
+              </label>
+              <input
+                type='text'
+                id='idDataAdmissao'
+                {...(register('dataAdmissao'), { required: true })}
+              />
+            </div>
           </div>
         </fieldset>
         <button type='submit'>Cadastrar Colaborador</button>
