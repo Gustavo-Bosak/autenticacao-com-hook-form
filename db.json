@@ -1,0 +1,23 @@
+{
+    "funcionarios": [
+        {
+            "rf": "string",
+            "nome": "string",
+            "email": "string",
+            "senha": "string",
+            "cargo": "string",
+            "setor": "string",
+            "cpf": "string",
+            "telefone": "string",
+            "salario": "number",
+            "dataAdmissao": "string"
+        }
+    ],
+    "setores": [
+        { "id": "1","nome":"Central de Atendimento ao Aluno (CAA)" },
+        { "id": "2","nome":"Financeiro" },
+        { "id": "3","nome":"Recursos Humanos (RH)" },
+        { "id": "4","nome":"Tecnologia da Informação Interna (TI)" },
+        { "id": "5","nome":"Marketing e Comunicação" }
+    ]
+}
