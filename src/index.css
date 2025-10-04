@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/*Variaveis Globais - Cores*/
+@theme {
+  --color-fiap-cor: #ED145B;
+  --color-fundo-dark: #121212; 
+  --color-surface-dark: #1E1E1E;
+  --color-texto-primario: #FFFFFF;
+  --color-texto-secondario: #b3b3b3;
+  --color-borda-color: #333333;
+}
+
+/*Header*/
+.cabecalho-fiap {
+  background-color: #000000;
+  height: 60px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-fiap-cor, #333);
+}
+
+.cabecalho-conteudo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cabecalho-esquerda,
+.cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cabecalho-logo {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: var(--color-fiap-cor, #ED145B);
+  letter-spacing: 1px;
+}
+
+.cabecalho-icone {
+  font-size: 1.5rem;
+  color: var(--color-fiap-cor, #ED145B);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.cabecalho-icone:hover {
+  transform: scale(1.1);
+  filter: brightness(0.9);
+}
+
+.cabecalho-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #ffffff;
+  border-radius: 50%; 
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--color-fundo-dark);
+  color: var(--color-texto-primario);
+}
+
+.main-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/*Footer*/
+.rodape {
+  width: 100%;
+  padding: 2rem 0; /
+  margin-top: auto; 
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-texto-secondario); 
+  border-top: 1px solid var(--color-borda-color);
+}
+
+/*Home*/
+.card-info {
+  background-color: var(--surface-dark);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.texto-primario {
+  color: var(--color-texto-primario);
+}
+
+.texto-secundario {
+  color: var(--color-texto-secondario);
+}
+
+.texto-destaque {
+  color: var(--color-fiap-cor);
+  font-weight: bold;
+}
+
+.rotulo-info {
+  font-weight: 500;
+  color: var(--color-texto-secondario);
+}

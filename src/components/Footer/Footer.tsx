@@ -1,10 +1,10 @@
 function Footer() {
   return (
-    <footer>
-      <p>&copy; 2025 Cadastro de Funcionarios FIAP </p>
+    <footer className="rodape">
+      <p>&copy; 2025 Cadastro de Funcionarios FIAP. Todos os direitos reservados.</p>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
 

@@ -1,6 +1,14 @@
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import type { tipoFuncionario } from '../../types/tipoFuncionario'
 
+const setoresDisponiveis = [
+  "Central de Atendimento ao Aluno (CAA)",
+  "Financeiro",
+  "Recursos Humanos (RH)",
+  "Tecnologia da Informação Interna (TI)",
+  "Marketing e Comunicação"
+]
+
 function Cadastro () {
   const {
     register,
@@ -43,13 +51,22 @@ function Cadastro () {
                 {...(register('cargo'), { required: true })}
               />
             </div>
-            <div>
+              <div>
               <label htmlFor='idSetor'>Setor</label>
-              <input
-                type='text'
+
+              <select
                 id='idSetor'
-                {...(register('setor'), { required: true })}
-              />
+                required
+                {...register('setor')}
+              >
+                <option value="" disabled selected>Selecione um setor</option>
+                
+                {setoresDisponiveis.map(setor => (
+                  <option key={setor} value={setor}>
+                    {setor}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div>
