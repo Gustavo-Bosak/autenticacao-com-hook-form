@@ -1,11 +1,11 @@
 function Login () {
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
   }
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <fieldset>
           <div>
             <div className='input-container'>
