@@ -28,13 +28,13 @@ function Login () {
       if (!funcionarioRegistrado) {
         setError('email', {
           type: 'manual',
-          message: 'Não existe conta com esse email.'
+          message: 'Não existe conta com esse email'
         })
         return
       }
 
       if (funcionarioRegistrado.senha != data.senha) {
-        setError('senha', { type: 'manual', message: 'Senha incorreta.' })
+        setError('senha', { type: 'manual', message: 'Senha incorreta' })
         return
       }
 

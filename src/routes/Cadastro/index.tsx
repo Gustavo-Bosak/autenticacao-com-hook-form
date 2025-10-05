@@ -52,11 +52,11 @@ function Cadastro () {
       )
 
       if (rfExistente)
-        setError('rf', { type: 'manual', message: 'RF já cadastrado.' })
+        setError('rf', { type: 'manual', message: 'RF já cadastrado' })
       if (emailExistente)
-        setError('email', { type: 'manual', message: 'Email já cadastrado.' })
+        setError('email', { type: 'manual', message: 'Email já cadastrado' })
       if (cpfExistente)
-        setError('cpf', { type: 'manual', message: 'CPF já cadastrado.' })
+        setError('cpf', { type: 'manual', message: 'CPF já cadastrado' })
 
       if (!rfExistente && !emailExistente && !cpfExistente) {
         await fetch('http://localhost:3001/funcionarios', {
@@ -86,7 +86,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message: 'Informe apenas letras e no mínimo 3 caracteres'
+                    message: 'Apenas letras e no mínimo 3 caracteres'
                   }
                 })}
               />
@@ -118,7 +118,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message: 'Informe apenas letras e no mínimo 3 caracteres'
+                    message: 'Apenas letras e no mínimo 3 caracteres'
                   }
                 })}
               />
@@ -154,7 +154,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^\d{11}$/,
-                    message: 'Informe apenas números e no mínimo 11 caracteres'
+                    message: 'Apenas números e no mínimo 11 caracteres'
                   }
                 })}
               />
@@ -170,7 +170,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   pattern: {
                     value: /^\d{10,11}$/,
-                    message: 'Informe apenas números e no mínimo 11 caracteres'
+                    message: 'Apenas números e no mínimo 10 caracteres'
                   }
                 })}
               />
@@ -218,7 +218,7 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   minLength: {
                     value: 6,
-                    message: 'Informe no mínimo 6 caracteres'
+                    message: 'Mínimo de 6 caracteres'
                   }
                 })}
               />
@@ -253,12 +253,11 @@ function Cadastro () {
                   required: 'Campo obrigatório',
                   validate: valor => {
                     const numero = parseFloat(String(valor).replace(',', '.'))
-                    return numero >= 900 || 'Informe no mínimo R$ 900,00'
+                    return numero >= 900 || 'Mínimo de R$ 900,00'
                   },
                   pattern: {
                     value: /^\d+([.,]\d{1,2})?$/,
-                    message:
-                      'Informe apenas números, com até duas casas decimais'
+                    message: 'Apenas números'
                   }
                 })}
               />
@@ -281,9 +280,9 @@ function Cadastro () {
                     dataMinima.setFullYear(dataMaxima.getFullYear() - 30)
 
                     if (data > dataMaxima)
-                      return 'Informe datas até o dia de hoje'
+                      return 'Datas máxima até hoje'
                     if (data < dataMinima)
-                      return 'Informe datas a até 30 anos atrás'
+                      return 'Datas mínima 30 anos atrás'
                     return true
                   }
                 })}
