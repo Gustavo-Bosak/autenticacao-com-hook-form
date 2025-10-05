@@ -123,7 +123,7 @@
     & input,
     select,
     textarea {
-      @apply text-sm w-full bg-white/20 p-4 text-center focus:outline-none;
+      @apply text-sm w-full bg-black/80 p-4 text-center focus:outline-none;
     }
 
     & .botao {
