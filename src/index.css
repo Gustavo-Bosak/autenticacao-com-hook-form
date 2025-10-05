@@ -27,7 +27,7 @@
   body {
     @apply bg-surface-dark;
   }
-  
+
   h2 {
     @apply font-roboto text-xl text-texto-primario font-medium uppercase;
   }
@@ -68,11 +68,11 @@
     }
 
     & h2 {
-      @apply my-4
+      @apply my-4;
     }
 
     & button {
-      @apply text-[0.75rem] font-kumbh-sans font-semibold uppercase
+      @apply text-[0.75rem] font-kumbh-sans font-semibold uppercase;
     }
   }
 
@@ -81,40 +81,62 @@
   }
 
   .formulario {
-    @apply flex flex-col items-center;
+    @apply flex flex-col items-center my-8;
+
+    & .card-titulo {
+      @apply w-full px-8;
+    }
 
     & form {
       @apply flex flex-col items-center bg-borda-color p-4 w-86 min-w-[300px] mb-8;
     }
 
+    & .many-fields {
+      @apply w-[50vw];
+    }
+
     & fieldset {
-      @apply flex flex-col gap-8 w-full;
+      @apply flex flex-col items-center gap-8 w-full;
     }
 
     & .field-container {
-      @apply flex gap-2;
+      @apply flex max-md:flex-col gap-8 w-full;
     }
 
     & .form-field {
-      @apply flex flex-col mb-2 text-white;
+      @apply flex flex-col mb-2 text-white w-full;
     }
 
-    & label{
+    & .many-fields .form-field {
+      @apply md:w-1/2;
+    }
+
+    & label {
       @apply uppercase mb-4 text-sm font-kumbh-sans font-extralight;
     }
 
-    & input{
+    & input,
+    select,
+    textarea {
       @apply text-sm w-full bg-white/20 p-4 text-center focus:outline-none;
     }
 
     & .botao {
       @apply w-full p-4;
     }
+
+    & .many-fields .botao {
+      @apply max-w-78;
+    }
   }
 }
 
 @layer utilities {
   .hover-brightness {
-    @apply hover:brightness-60 transition duration-300 cursor-pointer
+    @apply hover:brightness-60 transition duration-300 cursor-pointer;
+  }
+
+  .link {
+    @apply font-semibold text-fiap-cor underline;
   }
 }

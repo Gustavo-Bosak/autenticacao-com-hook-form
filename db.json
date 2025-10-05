@@ -29,6 +29,21 @@
       "confirmarSenha": "123456",
       "salario": "1515",
       "dataAdmissao": "2024-09-25"
+    },
+    {
+      "id": "13a9",
+      "nome": "Nome Completo",
+      "rf": "RF1234",
+      "cargo": "Cargo",
+      "setor": "Financeiro",
+      "cpf": "12345123451",
+      "telefone": "1111111111",
+      "email": "a@mail.com",
+      "confirmarEmail": "a@mail.com",
+      "senha": "123456",
+      "confirmarSenha": "123456",
+      "salario": "2500,99",
+      "dataAdmissao": "2025-06-12"
     }
   ],
   "setores": [

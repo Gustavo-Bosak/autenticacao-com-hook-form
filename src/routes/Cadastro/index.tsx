@@ -4,10 +4,13 @@ import { useAuth } from '../../context/AuthContext'
 import { useEffect, useState } from 'react'
 import type { tipoSetor } from '../../types/tipoSetor'
 import MensagemErro from '../../components/MensagemErro/MensagemErro'
+import { ImEye, ImEyeBlocked } from 'react-icons/im'
+import { Link } from 'react-router-dom'
 
 function Cadastro () {
   const { login } = useAuth()
   const [setores, setSetores] = useState<tipoSetor[]>([])
+  const [visivel, setVisivel] = useState<boolean>(false)
 
   const {
     register,
@@ -74,225 +77,254 @@ function Cadastro () {
 
   return (
     <main>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
-          <div>
-            <div>
-              <label htmlFor='idNome'>Nome Completo</label>
-              <input
-                type='text'
-                id='idNome'
-                {...register('nome', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message: 'Apenas letras e no mínimo 3 caracteres'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.nome} />
-            </div>
-            <div>
-              <label htmlFor='idRf'>RF (Registro do Funcionário)</label>
-              <input
-                type='text'
-                id='idRf'
-                {...register('rf', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/,
-                    message: 'RF não reconhecido'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.rf} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor='idCargo'>Cargo</label>
-              <input
-                type='text'
-                id='idCargo'
-                {...register('cargo', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
-                    message: 'Apenas letras e no mínimo 3 caracteres'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.cargo} />
-            </div>
-            <div>
-              <label htmlFor='idSetor'>Setor</label>
-              <select
-                id='idSetor'
-                defaultValue=''
-                {...register('setor', { required: 'Campo obrigatório' })}
-              >
-                <option value='' disabled>
-                  Selecione um setor
-                </option>
-                {setores.map((setor, index) => (
-                  <option key={index} value={setor.nome}>
-                    {setor.nome}
-                  </option>
-                ))}
-              </select>
-              <MensagemErro error={errors.setor} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor='idCpf'>CPF</label>
-              <input
-                type='text'
-                id='idCpf'
-                inputMode='numeric'
-                {...register('cpf', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^\d{11}$/,
-                    message: 'Apenas números e no mínimo 11 caracteres'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.cpf} />
-            </div>
-            <div>
-              <label htmlFor='idTelefone'>Telefone</label>
-              <input
-                type='tel'
-                id='idTelefone'
-                inputMode='numeric'
-                {...register('telefone', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^\d{10,11}$/,
-                    message: 'Apenas números e no mínimo 10 caracteres'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.telefone} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor='idEmail'>Email Corporativo</label>
-              <input
-                type='email'
-                id='idEmail'
-                {...register('email', {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: 'Formato de email inválido'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.email} />
-            </div>
-            <div>
-              <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
-              <input
-                type='email'
-                id='idConfirmarEmail'
-                {...register('confirmarEmail', {
-                  required: 'Campo obrigatório',
-                  validate: valor => {
-                    return valor === watchEmail || 'Emails não correspondem'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.confirmarEmail} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor='idSenha'>Senha</label>
-              <input
-                type='password'
-                id='idSenha'
-                {...register('senha', {
-                  required: 'Campo obrigatório',
-                  minLength: {
-                    value: 6,
-                    message: 'Mínimo de 6 caracteres'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.senha} />
-            </div>
-            <div>
-              <label htmlFor='idSenhaConfirmada'>
-                Confirmar Senha{' '}
-                <span className='text-red-500 font-bold'>*</span>
-              </label>
-              <input
-                type='password'
-                id='idSenhaConfirmada'
-                {...register('confirmarSenha', {
-                  required: 'Campo obrigatório',
-                  validate: valor => {
-                    return valor === watchSenha || 'Senhas não correspondem'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.confirmarSenha} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor='idSalario'>Salário</label>
-              <input
-                type='text'
-                id='idSalario'
-                inputMode='numeric'
-                {...register('salario', {
-                  required: 'Campo obrigatório',
-                  validate: valor => {
-                    const numero = parseFloat(String(valor).replace(',', '.'))
-                    return numero >= 900 || 'Mínimo de R$ 900,00'
-                  },
-                  pattern: {
-                    value: /^\d+([.,]\d{1,2})?$/,
-                    message: 'Apenas números'
-                  }
-                })}
-              />
-              <MensagemErro error={errors.salario} />
-            </div>
-            <div>
-              <label htmlFor='idDataAdmissao'>
-                Data de Admissão{' '}
-                <span className='text-red-500 font-bold'>*</span>
-              </label>
-              <input
-                type='date'
-                id='idDataAdmissao'
-                {...register('dataAdmissao', {
-                  required: 'Campo obrigatório',
-                  validate: valor => {
-                    const dataMaxima = new Date()
-                    const data = new Date(valor)
-                    const dataMinima = new Date()
-                    dataMinima.setFullYear(dataMaxima.getFullYear() - 30)
+      <section className='formulario'>
+        <div className='card-titulo'>
+          <h1>Criar conta</h1>
+          <p>Boas vindas ao Portal do Funcionário.</p>
+        </div>
 
-                    if (data > dataMaxima)
-                      return 'Datas máxima até hoje'
-                    if (data < dataMinima)
-                      return 'Datas mínima 30 anos atrás'
-                    return true
-                  }
-                })}
-              />
-              <MensagemErro error={errors.dataAdmissao} />
+        <form onSubmit={handleSubmit(onSubmit)} className='many-fields'>
+          <fieldset>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idNome'>Nome Completo</label>
+                <input
+                  type='text'
+                  id='idNome'
+                  {...register('nome', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
+                      message: 'Apenas letras e no mínimo 3 caracteres'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.nome} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idRf'>RF (Registro do Funcionário)</label>
+                <input
+                  type='text'
+                  id='idRf'
+                  {...register('rf', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/,
+                      message: 'RF não reconhecido'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.rf} />
+              </div>
             </div>
-          </div>
-        </fieldset>
-        <button type='submit'>Cadastrar Colaborador</button>
-      </form>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idCargo'>Cargo</label>
+                <input
+                  type='text'
+                  id='idCargo'
+                  {...register('cargo', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,}$/,
+                      message: 'Apenas letras e no mínimo 3 caracteres'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.cargo} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idSetor'>Setor</label>
+                <select
+                  id='idSetor'
+                  defaultValue=''
+                  {...register('setor', { required: 'Campo obrigatório' })}
+                >
+                  <option value='' disabled>
+                    Selecione um setor
+                  </option>
+                  {setores.map((setor, index) => (
+                    <option key={index} value={setor.nome}>
+                      {setor.nome}
+                    </option>
+                  ))}
+                </select>
+                <MensagemErro error={errors.setor} />
+              </div>
+            </div>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idCpf'>CPF</label>
+                <input
+                  type='text'
+                  id='idCpf'
+                  inputMode='numeric'
+                  {...register('cpf', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^\d{11}$/,
+                      message: 'Apenas números e no mínimo 11 caracteres'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.cpf} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idTelefone'>Telefone</label>
+                <input
+                  type='tel'
+                  id='idTelefone'
+                  inputMode='numeric'
+                  {...register('telefone', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^\d{10,11}$/,
+                      message: 'Apenas números e no mínimo 10 caracteres'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.telefone} />
+              </div>
+            </div>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idEmail'>Email Corporativo</label>
+                <input
+                  type='email'
+                  id='idEmail'
+                  {...register('email', {
+                    required: 'Campo obrigatório',
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: 'Formato de email inválido'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.email} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idConfirmarEmail'>Confirmar Email</label>
+                <input
+                  type='email'
+                  id='idConfirmarEmail'
+                  {...register('confirmarEmail', {
+                    required: 'Campo obrigatório',
+                    validate: valor => {
+                      return valor === watchEmail || 'Emails não correspondem'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.confirmarEmail} />
+              </div>
+            </div>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idSenha'>Senha</label>
+                <div className='relative flex items-center'>
+                  <input
+                    type={visivel ? 'text' : 'password'}
+                    id='idSenha'
+                    {...register('senha', {
+                      required: 'Campo obrigatório',
+                      minLength: {
+                        value: 6,
+                        message: 'Informe no mínimo 6 caracteres'
+                      }
+                    })}
+                  />
+                  <p
+                    onClick={() =>
+                      visivel ? setVisivel(false) : setVisivel(true)
+                    }
+                    className='text-lg right-4 absolute text-fiap-cor cursor-pointer'
+                  >
+                    {visivel ? <ImEye /> : <ImEyeBlocked />}
+                  </p>
+                </div>
+                <MensagemErro error={errors.senha} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idSenhaConfirmada'>Confirmar Senha</label>
+                <div className='relative flex items-center'>
+                  <input
+                    type={visivel ? 'text' : 'password'}
+                    id='idSenhaConfirmada'
+                    {...register('confirmarSenha', {
+                      required: 'Campo obrigatório',
+                      validate: valor => {
+                        return valor === watchSenha || 'Senhas não correspondem'
+                      }
+                    })}
+                  />
+                  <p className='text-lg right-4 absolute text-texto-secondario'>
+                    {visivel ? <ImEye /> : <ImEyeBlocked />}
+                  </p>
+                </div>
+                <MensagemErro error={errors.senha} />
+              </div>
+            </div>
+            <div className='field-container'>
+              <div className='form-field'>
+                <label htmlFor='idSalario'>Salário</label>
+                <input
+                  type='text'
+                  id='idSalario'
+                  inputMode='numeric'
+                  {...register('salario', {
+                    required: 'Campo obrigatório',
+                    validate: valor => {
+                      const numero = parseFloat(String(valor).replace(',', '.'))
+                      return numero >= 900 || 'Mínimo de R$ 900,00'
+                    },
+                    pattern: {
+                      value: /^\d+([.,]\d{1,2})?$/,
+                      message: 'Apenas números'
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.salario} />
+              </div>
+              <div className='form-field'>
+                <label htmlFor='idDataAdmissao'>Data de Admissão</label>
+                <input
+                  type='date'
+                  id='idDataAdmissao'
+                  {...register('dataAdmissao', {
+                    required: 'Campo obrigatório',
+                    validate: valor => {
+                      const dataMaxima = new Date()
+                      const data = new Date(valor)
+                      const dataMinima = new Date()
+                      dataMinima.setFullYear(dataMaxima.getFullYear() - 30)
+
+                      if (data > dataMaxima) return 'Datas máxima até hoje'
+                      if (data < dataMinima) return 'Datas mínima 30 anos atrás'
+                      return true
+                    }
+                  })}
+                />
+                <MensagemErro error={errors.dataAdmissao} />
+              </div>
+            </div>
+            <p className='mb-4'>
+              Ao cria um peril, você concorda com os{' '}
+              <Link to='/' className='font-semibold'>
+                Termos de Uso
+              </Link>
+              .
+            </p>
+          </fieldset>
+          <button type='submit' className='botao'>
+            Cadastrar Colaborador
+          </button>
+        </form>
+        <p>
+          Já tem um perfil?{' '}
+          <Link to='/login' className='link'>
+            Entrar
+          </Link>
+        </p>
+      </section>
     </main>
   )
 }

@@ -99,9 +99,10 @@ function Login () {
             Entrar
           </button>
         </form>
+
         <p>
           Não tem um perfil?{' '}
-          <Link to='/cadastro' className='font-semibold text-fiap-cor'>
+          <Link to='/cadastro' className='link'>
             Cadastrar
           </Link>
         </p>
