@@ -1,28 +1,39 @@
-import { FiMenu, FiHome, FiStar } from 'react-icons/fi';
+import { useAuth } from '../../context/AuthContext'
+import logo from '../../assets/images/logo.png'
+import { Link } from 'react-router-dom'
+import { RiHomeLine } from 'react-icons/ri'
+import { TfiStar } from 'react-icons/tfi'
+import { VscThreeBars } from 'react-icons/vsc'
 
-function Header() {
+function Header () {
+  const { logout } = useAuth()
+
   return (
-    <header className="cabecalho-fiap">
-      <div className="cabecalho-conteudo">
-        
-        <div className="cabecalho-esquerda">
-          <FiMenu className="cabecalho-icone" />
-          <span className="cabecalho-logo">FIAP</span>
+    <header className='flex items-center h-20 bg-fundo-dark text-fiap-cor'>
+      <div className='flex justify-between items-center px-6 w-full'>
+        <div className='flex items-center gap-6'>
+          <button className='hover-brightness'>
+            <VscThreeBars className='text-[2rem]' />
+          </button>
+          <Link to='/' aria-label='Página Inicial'>
+            <img src={logo} alt='Logo FIAP' className='h-4.75' />
+          </Link>
         </div>
 
-        <div className="cabecalho-direita">
-          <a href="#" aria-label="Página Inicial">
-            <FiHome className="cabecalho-icone" />
-          </a>
-          <a href="#" aria-label="Favoritos">
-            <FiStar className="cabecalho-icone" />
-          </a>
-          <div className="cabecalho-avatar"></div>
+        <div className='flex items-center gap-10'>
+          <Link to='/' aria-label='Página Inicial' className='hover-brightness'>
+            <RiHomeLine className='text-2xl ' />
+          </Link>
+          <Link to='/' aria-label='Favoritos' className='hover-brightness'>
+            <TfiStar className='text-xl' />
+          </Link>
+          <button onClick={() => logout()} className='botao'>
+            Sair
+          </button>
         </div>
-
       </div>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

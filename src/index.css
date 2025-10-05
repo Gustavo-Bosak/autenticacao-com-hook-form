@@ -20,7 +20,7 @@
 }
 
 @layer base {
-  html * {
+  html {
     @apply text-texto-corpo;
   }
 
@@ -34,6 +34,10 @@
 }
 
 @layer components {
+  .main {
+    @apply flex flex-col items-center justify-center h-130 mx-20 my-2 py-4;
+  }
+
   .card-titulo {
     @apply my-4 font-kumbh-sans;
     & h1 {
@@ -60,123 +64,17 @@
     }
   }
 
-  .main {
-    @apply flex flex-col items-center justify-center h-130 mx-20 my-2 py-4;
-  }
-
-  .cabecalho-fiap {
-    @apply h-20 bg-fundo-dark;
+  .botao {
+    @apply min-w-40 p-2.5 bg-fiap-cor text-center text-white text-sm font-kumbh-sans font-semibold uppercase hover:bg-white hover:text-fiap-cor transition duration-300;
   }
 
   .rodape {
     @apply h-20;
   }
 }
-/*
-Header
-.cabecalho-fiap {
-  background-color: #000000;
-  height: 60px;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--color-fiap-cor, #333);
-}
 
-.cabecalho-conteudo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+@layer utilities {
+  .hover-brightness {
+    @apply hover:brightness-60 transition duration-300 cursor-pointer
+  }
 }
-
-.cabecalho-esquerda,
-.cabecalho-direita {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.cabecalho-logo {
-  font-weight: bold;
-  font-size: 1.8rem;
-  color: var(--color-fiap-cor, #ED145B);
-  letter-spacing: 1px;
-}
-
-.cabecalho-icone {
-  font-size: 1.5rem;
-  color: var(--color-fiap-cor, #ED145B);
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
-}
-
-.cabecalho-icone:hover {
-  transform: scale(1.1);
-  filter: brightness(0.9);
-}
-
-.cabecalho-avatar {
-  width: 36px;
-  height: 36px;
-  background-color: #ffffff;
-  border-radius: 50%; 
-  cursor: pointer;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  background-color: var(--color-fundo-dark);
-  color: var(--color-texto-primario);
-}
-
-.main-content {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-Footer
-.rodape {
-  width: 100%;
-  padding: 2rem 0;
-  margin-top: auto; 
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--color-texto-secondario); 
-  border-top: 1px solid var(--color-borda-color);
-}
-
-Home
-.card-info {
-  background-color: var(--surface-dark);
-  border: 1px solid var(--border-color);
-  padding: 1.5rem;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.texto-primario {
-  color: var(--color-texto-primario);
-}
-
-.texto-secundario {
-  color: var(--color-texto-secondario);
-}
-
-.texto-destaque {
-  color: var(--color-fiap-cor);
-  font-weight: bold;
-}
-
-.rotulo-info {
-  font-weight: 500;
-  color: var(--color-texto-secondario);
-}
-*/
