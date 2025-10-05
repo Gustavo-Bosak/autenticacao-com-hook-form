@@ -35,7 +35,11 @@
 
 @layer components {
   .main {
-    @apply flex flex-col items-center justify-center h-135 mx-20 my-2 py-4;
+    @apply flex flex-col items-center justify-center h-135 mx-20 my-auto py-4;
+
+    & > * {
+      @apply min-w-[300px];
+    }
   }
 
   .card-titulo {
@@ -74,6 +78,38 @@
 
   .botao {
     @apply min-w-40 p-2.5 bg-fiap-cor text-center text-white text-sm font-kumbh-sans font-semibold uppercase hover:bg-white hover:text-fiap-cor transition duration-300;
+  }
+
+  .formulario {
+    @apply flex flex-col items-center;
+
+    & form {
+      @apply flex flex-col items-center bg-borda-color p-4 w-86 min-w-[300px] mb-8;
+    }
+
+    & fieldset {
+      @apply flex flex-col gap-8 w-full;
+    }
+
+    & .field-container {
+      @apply flex gap-2;
+    }
+
+    & .form-field {
+      @apply flex flex-col mb-2 text-white;
+    }
+
+    & label{
+      @apply uppercase mb-4 text-sm font-kumbh-sans font-extralight;
+    }
+
+    & input{
+      @apply text-sm w-full bg-white/20 p-4 text-center focus:outline-none;
+    }
+
+    & .botao {
+      @apply w-full p-4;
+    }
   }
 }
 

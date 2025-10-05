@@ -9,7 +9,7 @@ function Header () {
   const { logout } = useAuth()
 
   return (
-    <header className='flex items-center h-20 bg-fundo-dark text-fiap-cor'>
+    <header className='flex items-center h-20 bg-fundo-dark text-fiap-cor w-full'>
       <div className='flex justify-between items-center px-6 w-full'>
         <div className='flex items-center gap-6'>
           <button className='hover-brightness'>

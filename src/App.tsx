@@ -25,7 +25,7 @@ function App() {
   },[location.pathname])
 
   return (
-    <div>
+    <div className={`flex flex-col items-center min-h-[100vh]`}>
       {acessoPrivado && <Header/>}
       <Outlet/>
       {acessoPrivado && <Footer/>}
