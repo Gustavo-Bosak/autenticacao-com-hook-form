@@ -29,13 +29,13 @@
   }
   
   h2 {
-    @apply font-roboto text-xl text-texto-primario font-medium mb-4 uppercase;
+    @apply font-roboto text-xl text-texto-primario font-medium uppercase;
   }
 }
 
 @layer components {
   .main {
-    @apply flex flex-col items-center justify-center h-130 mx-20 my-2 py-4;
+    @apply flex flex-col items-center justify-center h-135 mx-20 my-2 py-4;
   }
 
   .card-titulo {
@@ -62,14 +62,18 @@
         @apply text-right;
       }
     }
+
+    & h2 {
+      @apply my-4
+    }
+
+    & button {
+      @apply text-[0.75rem] font-kumbh-sans font-semibold uppercase
+    }
   }
 
   .botao {
     @apply min-w-40 p-2.5 bg-fiap-cor text-center text-white text-sm font-kumbh-sans font-semibold uppercase hover:bg-white hover:text-fiap-cor transition duration-300;
-  }
-
-  .rodape {
-    @apply h-20;
   }
 }
 

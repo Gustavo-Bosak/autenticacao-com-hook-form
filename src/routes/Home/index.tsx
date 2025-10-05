@@ -50,6 +50,7 @@ function Home () {
           </div>
           <div className='flex gap-2'>
             <div className='card-descritivo'>
+              <button>Editar</button>
               <h2>Dados Pessoais</h2>
               <ul>
                 <li>
@@ -71,6 +72,7 @@ function Home () {
               </ul>
             </div>
             <div className='card-descritivo'>
+              <button>Editar</button>
               <h2>Dados Profissionais</h2>
               <ul>
                 <li>
