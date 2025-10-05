@@ -21,7 +21,7 @@ const router = createBrowserRouter([
           <RotaPrivada privado={false}>
             <Login />
           </RotaPrivada>,
-        path: ''
+        path: '/login'
       },
       {
         element:
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
           <RotaPrivada privado>
             <Home />
           </RotaPrivada>,
-        path: '/home'
+        path: '/'
       }
     ]
   }

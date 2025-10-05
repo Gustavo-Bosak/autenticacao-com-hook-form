@@ -6,11 +6,11 @@ function RotaPrivada({children, privado}:{children:React.JSX.Element; privado:bo
     const { funcionario } = useAuth();
 
     if (privado && !funcionario) {
-        return <Navigate to='/' replace/>
+        return <Navigate to='/login' replace/>
     }
     
     if (!privado && funcionario) {
-        return <Navigate to='/home' replace/>
+        return <Navigate to='/' replace/>
     }
 
     return children

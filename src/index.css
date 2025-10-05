@@ -1,16 +1,79 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* Fonte */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 
 /*Variaveis Globais - Cores*/
 @theme {
-  --color-fiap-cor: #ED145B;
-  --color-fundo-dark: #121212; 
-  --color-surface-dark: #1E1E1E;
-  --color-texto-primario: #FFFFFF;
-  --color-texto-secondario: #b3b3b3;
-  --color-borda-color: #333333;
+  --color-fiap-cor: #ed145b;
+  --color-fundo-dark: #000000;
+  --color-surface-dark: #161616;
+  --color-texto-primario: #7d7d7d;
+  --color-texto-secondario: #91a3ad;
+  --color-texto-corpo: #535c61;
+  --color-borda-color: #1c1d1e;
+
+  /* fontes */
+  --font-kumbh-sans: 'Kumbh Sans', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
 }
 
-/*Header*/
+@layer base {
+  html * {
+    @apply text-texto-corpo;
+  }
+
+  body {
+    @apply bg-surface-dark;
+  }
+  
+  h2 {
+    @apply font-roboto text-xl text-texto-primario font-medium mb-4 uppercase;
+  }
+}
+
+@layer components {
+  .card-titulo {
+    @apply my-4 font-kumbh-sans;
+    & h1 {
+      @apply text-4xl text-fiap-cor mb-2 uppercase;
+    }
+    & p {
+      @apply text-2xl text-texto-secondario uppercase;
+    }
+  }
+
+  .card-descritivo {
+    @apply bg-borda-color p-4 min-w-100;
+    & ul,
+    li {
+      @apply w-full;
+    }
+
+    & li {
+      @apply flex justify-between;
+
+      & p {
+        @apply text-right;
+      }
+    }
+  }
+
+  .main {
+    @apply flex flex-col items-center justify-center h-130 mx-20 my-2 py-4;
+  }
+
+  .cabecalho-fiap {
+    @apply h-20 bg-fundo-dark;
+  }
+
+  .rodape {
+    @apply h-20;
+  }
+}
+/*
+Header
 .cabecalho-fiap {
   background-color: #000000;
   height: 60px;
@@ -77,7 +140,7 @@ body {
   padding: 0 1rem;
 }
 
-/*Footer*/
+Footer
 .rodape {
   width: 100%;
   padding: 2rem 0;
@@ -88,7 +151,7 @@ body {
   border-top: 1px solid var(--color-borda-color);
 }
 
-/*Home*/
+Home
 .card-info {
   background-color: var(--surface-dark);
   border: 1px solid var(--border-color);
@@ -116,3 +179,4 @@ body {
   font-weight: 500;
   color: var(--color-texto-secondario);
 }
+*/
