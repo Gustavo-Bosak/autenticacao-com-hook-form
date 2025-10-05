@@ -44,6 +44,21 @@
       "confirmarSenha": "123456",
       "salario": "2500,99",
       "dataAdmissao": "2025-06-12"
+    },
+    {
+      "id": "689b",
+      "nome": "Nik Brisola",
+      "rf": "5643",
+      "cargo": "Estagiario",
+      "setor": "Central de Atendimento ao Aluno (CAA)",
+      "cpf": "12345678977",
+      "telefone": "11990000000",
+      "email": "nik.brisola@gmail.com",
+      "confirmarEmail": "nik.brisola@gmail.com",
+      "senha": "123456",
+      "confirmarSenha": "123456",
+      "salario": "901",
+      "dataAdmissao": "2025-10-01"
     }
   ],
   "setores": [
