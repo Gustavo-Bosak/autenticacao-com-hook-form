@@ -13,7 +13,7 @@ function Header () {
       <div className='flex justify-between items-center px-6 w-full'>
         <div className='flex items-center gap-6'>
           <button className='hover-brightness'>
-            <VscThreeBars className='text-[2rem]' />
+            <VscThreeBars className='text-4xl' />
           </button>
           <Link to='/' aria-label='Página Inicial'>
             <img src={logo} alt='Logo FIAP' className='h-4.75' />
@@ -21,10 +21,10 @@ function Header () {
         </div>
 
         <div className='flex items-center gap-10'>
-          <Link to='/' aria-label='Página Inicial' className='hover-brightness'>
+          <Link to='/' aria-label='Página Inicial' className='hover-brightness hidden sm:inline'>
             <RiHomeLine className='text-2xl ' />
           </Link>
-          <Link to='/' aria-label='Favoritos' className='hover-brightness'>
+          <Link to='/' aria-label='Favoritos' className='hover-brightness hidden sm:inline'>
             <TfiStar className='text-xl' />
           </Link>
           <button onClick={() => logout()} className='botao'>

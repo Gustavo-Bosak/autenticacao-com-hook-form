@@ -29,17 +29,17 @@ function Home () {
 
   return (
     <main className='main'>
-      <div className='flex justify-between w-full h-full'>
-        <section className='w-1/5 my-auto'>
+      <div className='flex justify-between flex-col gap-8 md:flex-row w-full'>
+        <section className='w-1/5 min-w-50 lg:my-auto'>
           <img
             src={imagemFuncionario}
             alt='Imagem do funcionário'
             className='size-64 object-cover rounded-xl shadow-lg'
           />
         </section>
-        <section className='flex flex-col justify-between w-3/4 h-full gap-4'>
-          <div className='flex flex-col justify-between h-full'>
-            <div className='card-titulo my-auto'>
+        <section className='flex flex-col justify-between w-full md:w-3/4 gap-4 sm:-mt-64 md:mt-0'>
+          <div className='flex flex-col justify-between sm:pl-56 md:pl-0'>
+            <div className='card-titulo mb-16'>
               <h1>Olá, {funcionarioResgatado?.nome}</h1>
               <p>Seja bem-vinda(o) ao seu painel do funcionário</p>
             </div>
@@ -48,7 +48,7 @@ function Home () {
               <div className='h-0.25 w-full bg-texto-primario'></div>
             </div>
           </div>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 flex-col lg:flex-row'>
             <div className='card-descritivo'>
               <button>Editar</button>
               <h2>Dados Pessoais</h2>
